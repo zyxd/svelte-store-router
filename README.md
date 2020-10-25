@@ -9,7 +9,7 @@ A completely different approach of routing. State-based router suggests that rou
 - Zero-config.
 - Just another global state.
 - It doesn't impose any restrictions on how to apply this state to the application.
-- Manipulate different parts of a state (path/query/fragment) separately.
+- Manipulate different parts of a state (`path` / `query` / `fragment`) separately.
 - Automatic parsing of the `query` and `fragment` parameters.
 - Components for `path` matching and parameters extracting (using [path-to-regexp](https://github.com/pillarjs/path-to-regexp)).
 - Configurable History changing delay.
@@ -25,7 +25,7 @@ npm i svelte-store-router --save-dev
 ## Usage
 
 Initialize store.
-```
+```svelte
 <script>
   import { Route } from 'svelte-store-router'
   const route = Route.toStore()
@@ -85,7 +85,7 @@ You can show only first matching path.
 </Matcher>
 ```
 
-You can set delay before history.pushstate was called. This prevents a large number of items from appearing in History state.
+You can set delay before `history.pushstate` was called. This prevents a large number of items from appearing in History state.
 ```svelte
 <script>
   import { Match, Matcher, Route } from 'svelte-store-router'
