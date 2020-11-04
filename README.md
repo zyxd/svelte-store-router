@@ -27,7 +27,7 @@ npm i svelte-store-router --save-dev
 Initialize store.
 ```svelte
 <script>
-  import { Route } from 'svelte-store-router'
+  import { Route, Match, Matcher } from 'svelte-store-router'
   const route = Route.toStore()
 </script>
 ```
