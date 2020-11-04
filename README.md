@@ -59,11 +59,6 @@ You can bind store values.
 
 You can match path pattern and parametrize it (by [path-to-regexp](https://github.com/pillarjs/path-to-regexp)).
 ```svelte
-<script>
-  import { Match, Route } from 'svelte-store-router'
-  const route = Route.toStore()
-</script>
-
 <Match path={$route.path} pattern="/users">
   User list
 </Match>
@@ -74,11 +69,6 @@ You can match path pattern and parametrize it (by [path-to-regexp](https://githu
 
 You can show only first matching path.
 ```svelte
-<script>
-  import { Match, Matcher, Route } from 'svelte-store-router'
-  const route = Route.toStore()
-</script>
-
 <Matcher>
   <Match path={$route.path} pattern="/users">
     User list
@@ -98,11 +88,8 @@ You can show only first matching path.
 You can set delay before `history.pushstate` was called. This prevents a large number of items from appearing in History state.
 ```svelte
 <script>
-  import { Route } from 'svelte-store-router'
-
+  // ...
   Route.delay = 300 // in milliseconds, zero by default
-
-  const route = Route.toStore()
 </script>
 
 <textarea placeholder="fragment.search" bind:value={$route.fragment.search}/>
@@ -112,8 +99,7 @@ You can convert query and fragment string values to JavaScript types.
 
 ```svelte
 <script>
-  import { Route } from 'svelte-store-router'
-  
+  // ...
   Route.queryTyped = true     // true by default
   Route.fragmentTyped = true  // true by default
   
@@ -127,31 +113,23 @@ You can convert query and fragment string values to JavaScript types.
     "01234"     -> 1234
     "a1234"     -> "a1234"
   */
-  
-  const route = Route.toStore()
 </script>
 ```
 
 You can clean query and fragment from empty (null / undefined / "") values. Might be useful to avoid `/path?page=undefined&search=`.
 ```svelte
 <script>
-  import { Route } from 'svelte-store-router'
-  
+  // ...
   Route.queryClean = true     // false by default
   Route.fragmentClean = true  // false by default
-
-  const route = Route.toStore()
 </script>
 ```
 
 You can also disable side effect (History) of route changing.
 ```svelte
 <script>
-  import { Route } from 'svelte-store-router'
-  
+  // ...
   Route.sideEffect = true // true by default in browser
                           // always false on server side
-
-  const route = Route.toStore()
 </script>
 ```
