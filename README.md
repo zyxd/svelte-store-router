@@ -1,4 +1,4 @@
-# Store-based router for Svelte
+# Store-based router for Svelte | [Demo](https://svelte-store-router-demo.vercel.app)
 
 #### Inspired by the [svelte-pathfinder](https://github.com/PaulMaly/svelte-pathfinder) by [PaulMaly](https://github.com/PaulMaly)
 
