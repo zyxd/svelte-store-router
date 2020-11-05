@@ -106,7 +106,7 @@ You can show only first matching path.
 ## Options
 
 #### delay
-Set delay in milliseconds before `history.pushstate` was called. This prevents a large number of items from appearing in History state. For example, it could be useful when the query/fragment parameter is binded with the `search` input field. `0` by default.
+Set delay in milliseconds before `history.pushstate` was called. This prevents a large number of items from appearing in History state. For example, it could be useful when the parameter of `query` or `fragment` is binded with the `search` input field. `0` by default.
 
 #### queryTyped / fragmentTyped
 Converts query and fragment string values to JavaScript types. `true` by default. For example strings will be converted from -> to:
@@ -128,3 +128,6 @@ Controls side effect of route changing which push items to History. `true` by de
 
 #### handleNavigation
 Toggles a navigation handler that automatically intercepts `<a>` clicks, updating the route state without reloading the page. `true` by default.
+
+#### queryParse / fragmentParse
+Enables `query` and `fragment` string to objects conversion.
