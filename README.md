@@ -124,7 +124,7 @@ Converts query and fragment string values to JavaScript types. `true` by default
 ```
 
 #### queryClean / fragmentClean
-Clean query and fragment from empty (`null` / `undefined` / `""`) values. Might be useful to avoid `/path?page=undefined&search=`. `true` by default.
+Clean query and fragment from empty (`null` / `undefined` / `""`) values. Might be useful to avoid `/path?page=undefined&search=`. `false` by default.
 
 #### sideEffect
 Controls side effect of route changing which push items to History. `true` by default in browser, always `false` on server side.
