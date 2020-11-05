@@ -95,7 +95,7 @@ You can show only first matching path.
 ## Options
 
 #### Route.delay
-Set delay in milliseconds before `history.pushstate` was called. This prevents a large number of items from appearing in History state. For example, when the value is binded with the "Search" field. `0` by default.
+Set delay in milliseconds before `history.pushstate` was called. This prevents a large number of items from appearing in History state. For example, it could be useful when the query/fragment parameter is binded with the "Search" field. `0` by default.
 
 #### Route.queryTyped / Route.fragmentTyped
 Converts query and fragment string values to JavaScript types. `true` by default. For example strings will be converted from -> to:
