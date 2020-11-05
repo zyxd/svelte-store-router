@@ -1,10 +1,14 @@
 {
   "name": "svelte-store-router",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Store-based router for Svelte",
   "module": "src/index.mjs",
   "author": "zyxd",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zyxd/svelte-store-router.git"
+  },
   "bugs": {
     "url": "https://github.com/zyxd/svelte-store-router/issues"
   },
@@ -15,8 +19,8 @@
     "svelte router"
   ],
   "dependencies": {
-    "svelte": "^3.29.4",
     "path-to-regexp": "^6.2.0",
-    "rambda": "^6.3.1"
+    "rambda": "^6.3.1",
+    "svelte": "^3.29.4"
   }
 }
