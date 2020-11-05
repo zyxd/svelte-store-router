@@ -86,7 +86,8 @@ You can show only first matching path.
     Page not found
   </Match>
   <Match path={$route.path}>
-    This content will never be displayed, because the previous <Match> handle all possible routes
+    This content will never be displayed, because
+    the previous <Match> handle all possible routes
   </Match>
 </Matcher>
 ```
