@@ -130,4 +130,4 @@ Controls side effect of route changing which push items to History. `true` by de
 Toggles a navigation handler that automatically intercepts `<a>` clicks, updating the route state without reloading the page. `true` by default.
 
 #### queryParse / fragmentParse
-Enables `query` and `fragment` string to objects conversion.
+Enables `query` and `fragment` string to objects conversion. `true` by default.
