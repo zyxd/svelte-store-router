@@ -1,6 +1,7 @@
 # Store-based router for Svelte
 
-#### Inspired by the [svelte-pathfinder](https://github.com/PaulMaly/svelte-pathfinder) by [PaulMaly](https://github.com/PaulMaly)
+#### Inspired by the [svelte-pathfinder](https://github.com/PaulMaly/svelte-pathfinder) by [PaulMaly](https://github.com/PaulMaly).
+#### [How it works](https://www.youtube.com/watch?v=kf5zccSyEso) (YouTube, russian language)
 
 A completely different approach of routing. State-based router suggests that routing is just another global state and History API changes are just an optional side-effects of this state.
 
