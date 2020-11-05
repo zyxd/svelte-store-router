@@ -114,3 +114,6 @@ Clean query and fragment from empty (`null` / `undefined` / `""`) values. Might 
 
 #### Route.sideEffect
 Controls side effect of route changing which push items to History. `true` by default in browser, always `false` on server side.
+
+#### Route.handleNavigation
+Toggles a navigation handler that automatically intercepts `<a>` clicks, updating the route state without reloading the page. `true` by default.
