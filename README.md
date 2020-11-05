@@ -93,41 +93,23 @@ You can show only first matching path.
 
 ## Options
 
-```svelte
-<script>
-  Route.delay = 300           // 0 by default
-                              //
-                              // Set delay in milliseconds before `history.pushstate` was called.
-                              // This prevents a large number of items from appearing in History state,
-                              // for example, when the value is binded with the "Search" field.
-  
-  
-  
-  Route.queryTyped = true     // true by default
-  Route.fragmentTyped = true  // true by default
-                              //
-                              // Convert query and fragment string values to JavaScript types.
-                              // For example strings will be converted from -> to:
-                              // "1"         -> 1
-                              // "0.123"     -> 0.123
-                              // "true"      -> true
-                              // "null"      -> null
-                              // "undefined" -> undefined
-                              // "01234"     -> 1234
-                              // "a1234"     -> "a1234"
-  
-  
-  
-  Route.queryClean = true     // false by default
-  Route.fragmentClean = true  // false by default
-                              //
-                              // Clean query and fragment from empty (null / undefined / "") values.
-                              // Might be useful to avoid `/path?page=undefined&search=`.
+#### Route.delay
+Set delay in milliseconds before `history.pushstate` was called. This prevents a large number of items from appearing in History state. For example, when the value is binded with the "Search" field. `0` by default.
 
-
-
-  Route.sideEffect = true     // true by default in browser, always false on server side
-                              //
-                              // Controls side effect of route changing which push items to History.
-</script>
+#### Route.queryTyped / Route.fragmentTyped
+Converts query and fragment string values to JavaScript types. `true` by default. For example strings will be converted from -> to:
 ```
+"1"         -> 1
+"0.123"     -> 0.123
+"true"      -> true
+"null"      -> null
+"undefined" -> undefined
+"01234"     -> 1234
+"a1234"     -> "a1234"
+```
+
+#### Route.queryClean / Route.fragmentClean
+Clean query and fragment from empty (`null` / `undefined` / `""`) values. Might be useful to avoid `/path?page=undefined&search=`. `true` by default.
+
+#### Route.sideEffect
+Controls side effect of route changing which push items to History. `true` by default in browser, always `false` on server side.
