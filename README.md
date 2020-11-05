@@ -105,7 +105,11 @@ You can show only first matching path.
 
 ## Options
 
+<<<<<<< HEAD
 #### delay
+=======
+#### Route.delay
+>>>>>>> b4ab326767d4f83806b645d622367960024d8c35
 Set delay in milliseconds before `history.pushstate` was called. This prevents a large number of items from appearing in History state. For example, it could be useful when the query/fragment parameter is binded with the "Search" field. `0` by default.
 
 #### queryTyped / fragmentTyped
@@ -126,5 +130,10 @@ Clean query and fragment from empty (`null` / `undefined` / `""`) values. Might 
 #### sideEffect
 Controls side effect of route changing which push items to History. `true` by default in browser, always `false` on server side.
 
+<<<<<<< HEAD
 #### handleNavigation
 Toggles a navigation handler that automatically intercepts `<a>` clicks, updating the route state without reloading the page. `true` by default.
+=======
+#### Route.handleNavigation
+Toggles a navigation handler that automatically intercepts `<a>` clicks, updating the route state without reloading the page. `true` by default.
+>>>>>>> b4ab326767d4f83806b645d622367960024d8c35
