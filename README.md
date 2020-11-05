@@ -91,51 +91,43 @@ You can show only first matching path.
 </Matcher>
 ```
 
-You can set delay before `history.pushstate` was called. This prevents a large number of items from appearing in History state.
-```svelte
-<script>
-  // ...
-  Route.delay = 300 // in milliseconds, zero by default
-</script>
-
-<textarea placeholder="fragment.search" bind:value={$route.fragment.search}/>
-```
-
-You can convert query and fragment string values to JavaScript types.
+## Options
 
 ```svelte
 <script>
-  // ...
+  Route.delay = 300           // 0 by default
+                              //
+                              // Set delay in milliseconds before `history.pushstate` was called.
+                              // This prevents a large number of items from appearing in History state,
+                              // for example, when the value is binded with the "Search" field.
+  
+  
+  
   Route.queryTyped = true     // true by default
   Route.fragmentTyped = true  // true by default
+                              //
+                              // Convert query and fragment string values to JavaScript types.
+                              // For example strings will be converted from -> to:
+                              // "1"         -> 1
+                              // "0.123"     -> 0.123
+                              // "true"      -> true
+                              // "null"      -> null
+                              // "undefined" -> undefined
+                              // "01234"     -> 1234
+                              // "a1234"     -> "a1234"
   
-  /*
-    For example will be converted from -> to:
-    "1"         -> 1
-    "0.123"     -> 0.123
-    "true"      -> true
-    "null"      -> null
-    "undefined" -> undefined
-    "01234"     -> 1234
-    "a1234"     -> "a1234"
-  */
-</script>
-```
-
-You can clean query and fragment from empty (null / undefined / "") values. Might be useful to avoid `/path?page=undefined&search=`.
-```svelte
-<script>
-  // ...
+  
+  
   Route.queryClean = true     // false by default
   Route.fragmentClean = true  // false by default
-</script>
-```
+                              //
+                              // Clean query and fragment from empty (null / undefined / "") values.
+                              // Might be useful to avoid `/path?page=undefined&search=`.
 
-You can also disable side effect (History) of route changing.
-```svelte
-<script>
-  // ...
-  Route.sideEffect = true // true by default in browser
-                          // always false on server side
+
+
+  Route.sideEffect = true     // true by default in browser, always false on server side
+                              //
+                              // Controls side effect of route changing which push items to History.
 </script>
 ```
