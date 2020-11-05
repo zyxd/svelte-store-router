@@ -24,22 +24,23 @@ npm i svelte-store-router --save-dev
 
 ## Usage
 
-Initialize store.
-```svelte
-<script>
-  import { Route, Match, Matcher } from 'svelte-store-router'
-  
-  // Some options
-  Route.delay = 500
-  Route.queryClean = true
-  Route.fragmentClean = true
-  
-  const route = Route.toStore()
-</script>
+Create a route store in your `stores.js`:
+```javascript
+import { createRouteStore } from 'svelte-store-router'
+
+export const route = createRouteStore({
+  delay: 300,
+  queryClean: true,
+  fragmentClean: true
+})
 ```
 
 Now you can access it as usual store.
 ```svelte
+<script>
+  import { route } from './stores.js'
+</script>
+
 Full route:   {$route}
 Path:         {$route.path}
 Query:        {$route.query}
@@ -65,6 +66,11 @@ You can bind store values.
 
 You can match path pattern and parametrize it (by [path-to-regexp](https://github.com/pillarjs/path-to-regexp)).
 ```svelte
+<script>
+  import { Match } from 'svelte-store-router'
+  import { route } from './stores.js'
+</script>
+
 <Match path={$route.path} pattern="/users">
   User list
 </Match>
@@ -75,6 +81,11 @@ You can match path pattern and parametrize it (by [path-to-regexp](https://githu
 
 You can show only first matching path.
 ```svelte
+<script>
+  import { Match, Matcher } from 'svelte-store-router'
+  import { route } from './stores.js'
+</script>
+
 <Matcher>
   <Match path={$route.path} pattern="/users">
     User list
@@ -86,17 +97,18 @@ You can show only first matching path.
     Page not found
   </Match>
   <Match path={$route.path}>
-    This content will never be displayed, because the previous <Match> handle all possible routes
+    This content will never be displayed, because
+    the previous <Match> handle all possible routes
   </Match>
 </Matcher>
 ```
 
 ## Options
 
-#### Route.delay
-Set delay in milliseconds before `history.pushstate` was called. This prevents a large number of items from appearing in History state. For example, when the value is binded with the "Search" field. `0` by default.
+#### delay
+Set delay in milliseconds before `history.pushstate` was called. This prevents a large number of items from appearing in History state. For example, it could be useful when the query/fragment parameter is binded with the "Search" field. `0` by default.
 
-#### Route.queryTyped / Route.fragmentTyped
+#### queryTyped / fragmentTyped
 Converts query and fragment string values to JavaScript types. `true` by default. For example strings will be converted from -> to:
 ```
 "1"         -> 1
@@ -108,8 +120,11 @@ Converts query and fragment string values to JavaScript types. `true` by default
 "a1234"     -> "a1234"
 ```
 
-#### Route.queryClean / Route.fragmentClean
+#### queryClean / fragmentClean
 Clean query and fragment from empty (`null` / `undefined` / `""`) values. Might be useful to avoid `/path?page=undefined&search=`. `true` by default.
 
-#### Route.sideEffect
+#### sideEffect
 Controls side effect of route changing which push items to History. `true` by default in browser, always `false` on server side.
+
+#### handleNavigation
+Toggles a navigation handler that automatically intercepts `<a>` clicks, updating the route state without reloading the page. `true` by default.
