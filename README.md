@@ -6,15 +6,15 @@ A completely different approach of routing. State-based router suggests that rou
 
 ## Features
 
-- Zero-config.
-- Just another global state.
-- It doesn't impose any restrictions on how to apply this state to the application.
-- Manipulate different parts of a state (`path` / `query` / `fragment`) separately.
-- Automatic parsing of the `query` and `fragment` parameters.
-- Components for `path` matching and parameters extracting (using [path-to-regexp](https://github.com/pillarjs/path-to-regexp)).
-- Configurable History changing delay.
-- Converting `query` and `fragment` string values to JavaScript types.
-- Cleaning `query` and `fragment` from empty values like a null / undefined / ''.
+- Just another global state;
+- It doesn't impose any restrictions on how to apply this state to the application;
+- Manipulate different parts of a state (`path` / `query` / `fragment`) separately;
+- Automatic parsing of the `query` and `fragment` parameters;
+- Components for `path` matching and parameters extracting (using [path-to-regexp](https://github.com/pillarjs/path-to-regexp));
+- Configurable delay of `History` changing;
+- Converting `query` and `fragment` string values to JavaScript types;
+- Cleaning `query` and `fragment` from empty values like a `null` / `undefined` / `''`;
+- Automatically handling `<a>` navigation what allow updating the route state without reloading the page.
 
 ## Install
 
@@ -106,7 +106,7 @@ You can show only first matching path.
 ## Options
 
 #### delay
-Set delay in milliseconds before `history.pushstate` was called. This prevents a large number of items from appearing in History state. For example, it could be useful when the query/fragment parameter is binded with the "Search" field. `0` by default.
+Set delay in milliseconds before `history.pushstate` was called. This prevents a large number of items from appearing in History state. For example, it could be useful when the query/fragment parameter is binded with the `search` input field. `0` by default.
 
 #### queryTyped / fragmentTyped
 Converts query and fragment string values to JavaScript types. `true` by default. For example strings will be converted from -> to:
