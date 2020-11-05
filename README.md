@@ -28,6 +28,12 @@ Initialize store.
 ```svelte
 <script>
   import { Route, Match, Matcher } from 'svelte-store-router'
+  
+  // Some options
+  Route.delay = 500
+  Route.queryClean = true
+  Route.fragmentClean = true
+  
   const route = Route.toStore()
 </script>
 ```
