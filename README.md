@@ -16,7 +16,8 @@ A completely different approach of routing. State-based router suggests that rou
 - Configurable delay of `History` changing;
 - Converting `query` and `fragment` string values to JavaScript types;
 - Cleaning `query` and `fragment` from empty values like a `null` / `undefined` / `''`;
-- Automatically handling `<a>` navigation what allow updating the route state without reloading the page.
+- Automatically handling `<a>` navigation what allow updating the route state without reloading the page;
+- Works fine with SSR.
 
 ## Install
 
