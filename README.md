@@ -108,6 +108,9 @@ You can show only first matching path.
 
 ## Options
 
+#### href
+Starting route as string. By default, empty on the server side and equal to `window.location` in the browser. Useful for SSR.
+
 #### delay
 Sets delay in milliseconds before `history.pushstate` was called. This prevents a large number of items from appearing in History state. For example, it could be useful when the parameter of `query` or `fragment` is binded with the `search` input field. `0` by default.
 
