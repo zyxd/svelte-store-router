@@ -1,8 +1,9 @@
 {
   "name": "svelte-store-router",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Store-based router for Svelte",
   "module": "src/index.mjs",
+  "types": "src/index.d.ts",
   "author": "zyxd",
   "license": "MIT",
   "repository": {
