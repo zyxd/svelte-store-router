@@ -1,6 +1,6 @@
 {
   "name": "svelte-store-router",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Store-based router for Svelte",
   "module": "src/index.mjs",
   "author": "zyxd",
@@ -20,7 +20,7 @@
   ],
   "dependencies": {
     "path-to-regexp": "^6.2.0",
-    "rambda": "^6.3.1",
-    "svelte": "^3.29.4"
+    "rambda": "^6.4.0",
+    "svelte": "^3.31.0"
   }
 }
