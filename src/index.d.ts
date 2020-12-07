@@ -21,6 +21,6 @@ interface RouteStoreOptions {
   fragmentClean?: boolean
 }
 
-export function createRouteStore(options: RouteStoreOptions): Writable<Route>
+export function createRouteStore(options?: RouteStoreOptions): Writable<Route>
 export class Match extends SvelteComponentTyped<{path: string, pattern?: string}> {}
 export class Matcher extends SvelteComponentTyped<{}> {}
