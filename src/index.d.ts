@@ -8,6 +8,10 @@ interface Route {
   toString: () => string
 }
 
+interface RouteStore<T> extends Writable<T> {
+  goto: (url: string) => void
+}
+
 interface RouteStoreOptions {
   href?: string,
   sideEffect?: boolean,
@@ -21,6 +25,6 @@ interface RouteStoreOptions {
   fragmentClean?: boolean
 }
 
-export function createRouteStore(options?: RouteStoreOptions): Writable<Route>
+export function createRouteStore(options?: RouteStoreOptions): RouteStore<Route>
 export class Match extends SvelteComponentTyped<{path: string, pattern?: string}> {}
 export class Matcher extends SvelteComponentTyped<{}> {}
