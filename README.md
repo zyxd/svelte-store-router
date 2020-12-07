@@ -67,7 +67,7 @@ You can bind store values.
 <textarea placeholder="fragment.search" bind:value={$route.fragment.search}/>
 ```
 
-You can goto directly to the desired url
+You can go directly to the desired url by calling a store function `goto` (without $).
 ```svelte
 <button on:click={() => route.goto('/users?orderBy=karma&limit=10')}>show top 10 users</button>
 ```
