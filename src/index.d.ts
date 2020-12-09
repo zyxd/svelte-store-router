@@ -3,8 +3,8 @@ import { Writable } from 'svelte/store'
 
 interface Route {
   path: string,
-  query: any,
-  fragment: any,
+  query: { [key: string]: any },
+  fragment: { [key: string]: any },
   toString: () => string
 }
 
