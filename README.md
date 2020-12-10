@@ -114,16 +114,16 @@ You can show only first matching path.
 Or you can match path manually using `match` function.
 ```svelte
 <script lang="ts">
-	import { match } from 'svelte-store-router'
-	import { route } from './stores'
+  import { match } from 'svelte-store-router'
+  import { route } from './stores'
 
-	let params
+  let params
 </script>
 
 {#if params = match('/users/:id', $route.path)}
-	User {params.id}
+  User {params.id}
 {:else}
-	Page not found
+  Page not found
 {/if}
 ```
 
