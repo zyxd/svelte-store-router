@@ -113,7 +113,7 @@ You can show only first matching path.
 
 Or you can match path manually using `match` function.
 ```svelte
-<script lang="ts">
+<script>
   import { match } from 'svelte-store-router'
   import { route } from './stores'
 
