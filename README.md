@@ -111,6 +111,22 @@ You can show only first matching path.
 </Matcher>
 ```
 
+Or you can match path manually using `match` function.
+```svelte
+<script lang="ts">
+	import { match } from 'svelte-store-router'
+	import { route } from './stores'
+
+	let params
+</script>
+
+{#if params = match('/users/:id', $route.path)}
+	User {params.id}
+{:else}
+	Page not found
+{/if}
+```
+
 ## Options
 
 #### href
