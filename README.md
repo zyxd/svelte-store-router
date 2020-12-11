@@ -12,7 +12,7 @@ A completely different approach of routing. State-based router suggests that rou
 - It doesn't impose any restrictions on how to apply this state to the application;
 - Manipulate different parts of a state (`path` / `query` / `fragment`) separately;
 - Automatic parsing of the `query` and `fragment` parameters;
-- Components for `path` matching and parameters extracting (using [path-to-regexp](https://github.com/pillarjs/path-to-regexp));
+- Components for `path` matching and parameters extracting (using [regexparam](https://github.com/lukeed/regexparam));
 - Configurable delay of `History` changing;
 - Converting `query` and `fragment` string values to JavaScript types;
 - Cleaning `query` and `fragment` from empty values like a `null` / `undefined` / `''`;
@@ -72,7 +72,7 @@ You can go directly to the desired url by calling a store function `goto` (witho
 <button on:click={() => route.goto('/users?orderBy=karma&limit=10')}>show top 10 users</button>
 ```
 
-You can match path pattern and parametrize it (by [path-to-regexp](https://github.com/pillarjs/path-to-regexp)).
+You can match path pattern and parametrize it ([regexparam](https://github.com/lukeed/regexparam)).
 ```svelte
 <script>
   import { Match } from 'svelte-store-router'
