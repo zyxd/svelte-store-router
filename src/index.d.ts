@@ -26,6 +26,6 @@ interface RouteStoreOptions {
 }
 
 export function createRouteStore(options?: RouteStoreOptions): RouteStore<Route>
-export function match(pattern: string, path: string): { [key: string]: any } | null
-export class Match extends SvelteComponentTyped<{path: string, pattern?: string}> {}
+export function match(pattern: string, path: string, loose?: boolean): { [key: string]: any } | null
+export class Match extends SvelteComponentTyped<{path: string, pattern?: string, loose?: boolean}> {}
 export class Matcher extends SvelteComponentTyped<{}> {}
