@@ -147,17 +147,17 @@ Or you can match path manually using `match` function.
 </script>
 
 {#if match('/users', $route.path, true)}
-	Begin of users template
+  Begin of users template
 	
   {#if params = match('/users/:id', $route.path)}
-		User {params.id}
-	{:else if params = match('/users/:id/friends', $route.path)}
-		User {params.id} friends
-	{/if}
+    User {params.id}
+  {:else if params = match('/users/:id/friends', $route.path)}
+    User {params.id} friends
+  {/if}
 
   End of users template
 {:else}
-	Page not found
+  Page not found
 {/if}
 ```
 
