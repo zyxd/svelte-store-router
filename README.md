@@ -111,6 +111,32 @@ You can show only first matching path.
 </Matcher>
 ```
 
+You can use nested match components using the 'loose' parameter.
+```svelte
+<script>
+  import { Match, Matcher } from 'svelte-store-router'
+  import { route } from './stores.js'
+</script>
+
+<Matcher>
+  <Match path={$route.path} pattern="/users" loose>
+    Begin of users template
+    <Matcher>
+      <Match path={$route.path} pattern="/users">
+        Users list
+      </Match>
+      <Match path={$route.path} pattern="/users/:id" let:params={{ id }}>
+        User {id} profile
+      </Match>
+    </Matcher>
+    End of users template
+  </Match>
+  <Match path={$route.path}>
+    Page not found
+  </Match>
+</Matcher>
+```
+
 Or you can match path manually using `match` function.
 ```svelte
 <script>
@@ -120,10 +146,18 @@ Or you can match path manually using `match` function.
   let params
 </script>
 
-{#if params = match('/users/:id', $route.path)}
-  User {params.id}
+{#if match('/users', $route.path, true)}
+	Begin of users template
+	
+  {#if params = match('/users/:id', $route.path)}
+		User {params.id}
+	{:else if params = match('/users/:id/friends', $route.path)}
+		User {params.id} friends
+	{/if}
+
+  End of users template
 {:else}
-  Page not found
+	Page not found
 {/if}
 ```
 
