@@ -111,7 +111,7 @@ You can show only first matching path.
 </Matcher>
 ```
 
-You can use nested match components using the 'loose' parameter.
+You can use nested match components using the `loose` parameter.
 ```svelte
 <script>
   import { Match, Matcher } from 'svelte-store-router'
