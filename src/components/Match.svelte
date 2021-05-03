@@ -4,8 +4,8 @@
 
 <script>
   import { getContext, hasContext } from 'svelte'
-  import match from 'functions/match'
-  import { key as key_matcher } from 'components/Matcher.svelte'
+  import match from '../functions/match.mjs'
+  import { key as key_matcher } from './Matcher.svelte'
 
   export let path
   export let pattern = '*'
