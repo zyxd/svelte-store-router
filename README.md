@@ -163,16 +163,16 @@ Or you can match path manually using `match` function.
 
 ## Options
 
-#### href
+#### href [String]
 Starting route as string. By default, empty on the server side and equal to `window.location` in the browser. Useful for SSR.
 
-#### delay
+#### delay [Number]
 Sets delay in milliseconds before `history.pushstate` was called. This prevents a large number of items from appearing in History state. For example, it could be useful when the parameter of `query` or `fragment` is binded with the `search` input field. `0` by default.
 
-#### queryParse / fragmentParse
+#### queryParse, fragmentParse [Boolean]
 Enables `query` and `fragment` string to objects conversion. `true` by default.
 
-#### queryTyped / fragmentTyped
+#### queryTyped, fragmentTyped [Boolean]
 Converts query and fragment string values to JavaScript types. `true` by default. For example strings will be converted from -> to:
 ```
 "1"         -> 1
@@ -184,11 +184,11 @@ Converts query and fragment string values to JavaScript types. `true` by default
 "a1234"     -> "a1234"
 ```
 
-#### queryClean / fragmentClean
+#### queryClean, fragmentClean [Boolean]
 Clean query and fragment from empty (`null` / `undefined` / `""`) values. Might be useful to avoid `/path?page=undefined&search=`. `false` by default.
 
-#### sideEffect
+#### sideEffect [Boolean]
 Controls side effect of route changing which push items to History. `true` by default in browser, always `false` on server side.
 
-#### handleNavigation
+#### handleNavigation [Boolean / String]
 Toggles a navigation handler that automatically intercepts `<a>` clicks, updating the route state without reloading the page. Adding a `rel="external"` attribute to a `<a>` will trigger a usual browser navigation when the link is clicked. In addition to boolean, can contain a string with CSS selectors (e.g. `".foo, #bar, form"`) for elements only within which `<a>` clicks should be handled. `true` by default.
