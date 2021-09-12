@@ -108,12 +108,12 @@ export default function({
           return
         }
 
-        const target = event.target
-        const anchor = target.closest('a')
+        const anchor = event.target.closest('a')
 
         if (
           !anchor ||
           !anchor.href ||
+          (typeof handleNavigation === 'string' && !anchor.closest(handleNavigation)) ||
           anchor.target ||
           anchor.hasAttribute('download') ||
           anchor.getAttribute('rel') === 'external'

@@ -191,4 +191,4 @@ Clean query and fragment from empty (`null` / `undefined` / `""`) values. Might 
 Controls side effect of route changing which push items to History. `true` by default in browser, always `false` on server side.
 
 #### handleNavigation
-Toggles a navigation handler that automatically intercepts `<a>` clicks, updating the route state without reloading the page. Adding a `rel="external"` attribute to a `<a>` will trigger a browser navigation when the link is clicked. `true` by default.
+Toggles a navigation handler that automatically intercepts `<a>` clicks, updating the route state without reloading the page. Adding a `rel="external"` attribute to a `<a>` will trigger a usual browser navigation when the link is clicked. In addition to boolean, can contain a string with CSS selectors (e.g. `.foo, #bar, form`) for elements only within which clicks `<a>` should be handled. `true` by default.
