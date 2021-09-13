@@ -15,7 +15,7 @@ interface RouteStore<T> extends Writable<T> {
 interface RouteStoreOptions {
   href?: string,
   sideEffect?: boolean,
-  handleNavigation?: boolean,
+  handleNavigation?: boolean | string,
   delay?: number,
   queryParse?: boolean,
   queryTyped?: boolean,
