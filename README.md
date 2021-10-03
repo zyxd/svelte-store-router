@@ -169,8 +169,8 @@ Or you can do it all above manually using `match` function instead of components
 
 ## Options
 
-#### href [String]
-Starting route as string. By default, empty on the server side and equal to `window.location` in the browser. Useful for SSR.
+#### base [String]
+Base path of application. Routes and links which not match under this path will not be handled. `''` by default.
 
 #### delay [Number]
 Sets delay in milliseconds before `history.pushstate` was called. This prevents a large number of items from appearing in History state. For example, it could be useful when the parameter of `query` or `fragment` is binded with the `search` input field. `0` by default.
