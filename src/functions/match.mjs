@@ -1,20 +1,33 @@
-import regexparam from 'regexparam'
+import { parse } from 'regexparam'
+import normalizePath from './normalizePath.mjs'
 
-function exec(path, result) {
-  let i=0, out={};
-  let matches = result.pattern.exec(path);
-  while (i < result.keys.length) {
-    out[ result.keys[i] ] = decodeURIComponent(matches[++i]) || null;
+function exec(path, { pattern, keys }) {
+  let i = 0
+  let output = {}
+  let matches = pattern.exec(path)
+  
+  while (i < keys.length) {
+    output[keys[i]] = decodeURIComponent(matches[++i]) || null
   }
-  return out;
+
+  return output
 }
 
-export default function(pattern, path, loose = false) {
-  const result = regexparam(pattern, loose)
+export default function({ path, base }, pattern = '*', loose = false) {
+  const result = parse(pattern, loose)
+
+  path = normalizePath(path)
+  base = normalizePath(base)
+
+  if (path.indexOf(base) === 0) {
+    path = normalizePath(path.slice(base.length))
+  } else {
+    return null
+  }
 
   if (result.pattern.test(path)) {
     return exec(path, result)
   } else {
-    return null
+    return null 
   }
 }

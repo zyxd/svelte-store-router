@@ -6,14 +6,16 @@ import cleanObject from './cleanObject.mjs'
 import objectToQuery from './objectToQuery.mjs'
 import objectToFragment from './objectToFragment.mjs'
 import delayed from './delayed.mjs'
+import normalizePath from './normalizePath.mjs'
 
 const hasWindow = typeof window !== 'undefined'
 const hasHistory = typeof history !== 'undefined'
 const hasLocation = typeof location !== 'undefined'
 const subWindow = hasWindow && window !== window.parent
+const href = hasLocation ? window.location.href : 'http://localhost'
 
 export default function({
-  href = hasLocation ? window.location : '',
+  base = '',
   sideEffect = true,
   handleNavigation = true,
   delay = 0,
@@ -58,7 +60,7 @@ export default function({
     let fragment = ''
 
     try {
-      const { pathname, search, hash } = new URL(url, 'https://example.com')
+      const { pathname, search, hash } = new URL(url, href)
       path = pathname
       query = search
       fragment = hash
@@ -79,6 +81,7 @@ export default function({
     )(fragment)
 
     return {
+      base,
       path,
       query,
       fragment,
@@ -86,6 +89,7 @@ export default function({
     }
   }
 
+  base = normalizePath(base)
   const { subscribe, set, update } = writable(fromString(href))
 
   if (sideEffect && hasWindow && hasHistory && !subWindow) {
@@ -122,9 +126,11 @@ export default function({
         }
 
         const url = anchor.href
-        const specialLinks = /((mailto:\w+)|(tel:\w+)).+/
+        const isSpecialLink = /((mailto:\w+)|(tel:\w+)).+/.test(url)
+        const isSameOrigin = url.indexOf(window.location.origin) === 0
+        const isSameBase = new URL(url, window.location.origin).pathname.indexOf(base) === 0
 
-        if (!url || url.indexOf(window.location.origin) !== 0 || specialLinks.test(url)) {
+        if (!url || !isSameOrigin || !isSameBase || isSpecialLink) {
           return
         }
 
@@ -134,7 +140,10 @@ export default function({
     }
   
     subscribe($route => {
-      if ($route.toString() !== fromString(window.location).toString()) {
+      const isSamePath = $route.toString() === fromString(window.location.href).toString()
+      const isSameBase = new URL($route.path, window.location.origin).pathname.indexOf($route.base) === 0
+
+      if (!isSamePath && isSameBase) {
         delayed(delay, () => {
           history.pushState({}, null, $route.toString())
         })

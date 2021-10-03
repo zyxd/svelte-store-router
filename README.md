@@ -79,10 +79,10 @@ You can match path pattern and parametrize it ([regexparam](https://github.com/l
   import { route } from './stores.js'
 </script>
 
-<Match path={$route.path} pattern="/users">
+<Match route={$route} pattern="/users">
   User list
 </Match>
-<Match path={$route.path} pattern="/users/:id" let:params={{ id }}>
+<Match route={$route} pattern="/users/:id" let:params={{ id }}>
   User {id} profile
 </Match>
 ```
@@ -95,16 +95,16 @@ You can show only first matching path.
 </script>
 
 <Matcher>
-  <Match path={$route.path} pattern="/users">
+  <Match route={$route} pattern="/users">
     User list
   </Match>
-  <Match path={$route.path} pattern="/users/:id" let:params={{ id }}>
+  <Match route={$route} pattern="/users/:id" let:params={{ id }}>
     User {id} profile
   </Match>
-  <Match path={$route.path}>
+  <Match route={$route}>
     Page not found
   </Match>
-  <Match path={$route.path}>
+  <Match route={$route}>
     This content will never be displayed, because
     the previous <Match> handle all possible routes
   </Match>
@@ -119,25 +119,25 @@ You can use nested match components using the `loose` parameter.
 </script>
 
 <Matcher>
-  <Match path={$route.path} pattern="/users" loose>
+  <Match route={$route} pattern="/users" loose>
     Begin of users template
     <Matcher>
-      <Match path={$route.path} pattern="/users">
+      <Match route={$route} pattern="/users">
         Users list
       </Match>
-      <Match path={$route.path} pattern="/users/:id" let:params={{ id }}>
+      <Match route={$route} pattern="/users/:id" let:params={{ id }}>
         User {id} profile
       </Match>
     </Matcher>
     End of users template
   </Match>
-  <Match path={$route.path}>
+  <Match route={$route}>
     Page not found
   </Match>
 </Matcher>
 ```
 
-Or you can match path manually using `match` function.
+Or you can do it all above manually using `match` function instead of components.
 ```svelte
 <script>
   import { match } from 'svelte-store-router'
@@ -146,18 +146,24 @@ Or you can match path manually using `match` function.
   let params
 </script>
 
-{#if match('/users', $route.path, true)}
-  Begin of users template
-	
-  {#if params = match('/users/:id', $route.path)}
-    User {params.id}
-  {:else if params = match('/users/:id/friends', $route.path)}
-    User {params.id} friends
-  {/if}
+<!--
+  It is recommended to first check if the route matches the base path of application by 
+  calling `match($route)`. Not necessary if the application will always be in the root path.
+-->
+{#if match($route)}
+  {#if match($route, '/users', true)}
+    Begin of users template
+    
+    {#if params = match($route, '/users/:id')}
+      User {params.id}
+    {:else if params = match($route, '/users/:id/friends')}
+      User {params.id} friends
+    {/if}
 
-  End of users template
-{:else}
-  Page not found
+    End of users template
+  {:else}
+    Page not found
+  {/if}
 {/if}
 ```
 

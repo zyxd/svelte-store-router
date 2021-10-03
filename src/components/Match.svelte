@@ -7,15 +7,15 @@
   import match from '../functions/match.mjs'
   import { key as key_matcher } from './Matcher.svelte'
 
-  export let path
-  export let pattern = '*'
+  export let route
+  export let pattern = undefined
   export let loose = false
   
   const key = {}
   const { register } = getContext(key_matcher) || {}
   let show = false
 
-  $: result = match(pattern, path, loose)
+  $: result = match(route, pattern, loose)
 
   $: {
     if (hasContext(key_matcher)) {
