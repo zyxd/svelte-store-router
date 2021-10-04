@@ -3,6 +3,7 @@ import { parse } from 'regexparam'
 import { writable } from 'svelte/store'
 import stringToType from './stringToType.mjs'
 import queryToObject from './queryToObject.mjs'
+import fragmentToObject from './fragmentToObject.mjs'
 import cleanObject from './cleanObject.mjs'
 import objectToQuery from './objectToQuery.mjs'
 import objectToFragment from './objectToFragment.mjs'
@@ -83,7 +84,7 @@ export default function({
     fragment = compose(
       when(always(fragmentParse), compose(
         when(always(fragmentTyped), map(stringToType)),
-        queryToObject
+        fragmentToObject
       ))
     )(fragment)
 
@@ -146,7 +147,7 @@ export default function({
     }
   
     subscribe(($route) => {
-      const isSamePath = $route.path === fromString(window.location.href).path
+      const isSamePath = $route.toString() === fromString(window.location.href).toString()
 
       if (!isSamePath) {
         delayed(delay, () => {
