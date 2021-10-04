@@ -1,4 +1,5 @@
 import { always, compose, join, map, when } from 'rambda'
+import { parse } from 'regexparam'
 import { writable } from 'svelte/store'
 import stringToType from './stringToType.mjs'
 import queryToObject from './queryToObject.mjs'
@@ -66,7 +67,7 @@ export default function({
       fragment = hash
     } catch {}
 
-    if (path.indexOf(base) === 0) {
+    if (parse(base, true).pattern.test(path)) {
       path = normalizePath(path.slice(base.length))
     } else {
       path = ''
@@ -133,7 +134,7 @@ export default function({
         const url = anchor.href
         const isSpecialLink = /((mailto:\w+)|(tel:\w+)).+/.test(url)
         const isSameOrigin = url.indexOf(window.location.origin) === 0
-        const isSameBase = new URL(url, window.location.origin).pathname.indexOf(base) === 0
+        const isSameBase = parse(base, true).pattern.test(new URL(url, window.location.origin).pathname)
 
         if (!url || !isSameOrigin || !isSameBase || isSpecialLink) {
           return
@@ -149,7 +150,7 @@ export default function({
 
       if (!isSamePath) {
         delayed(delay, () => {
-          history.pushState({}, null, `${$route.base}${$route}`)
+          history.pushState({}, null, normalizePath(`${base}${$route}`))
         })
       }
     })
