@@ -6,5 +6,5 @@ export default compose(
   fromPairs,
   map(split('=')),
   split('&'),
-  replace(/^\#/, '')
+  replace(/^\?/, '')
 )

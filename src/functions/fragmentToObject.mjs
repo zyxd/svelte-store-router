@@ -8,5 +8,5 @@ export default compose(
   map(split('=')),
   reject(isEmpty),
   split('&'),
-  replace(/^\?|\#/, '')
+  replace(/^\#/, '')
 )
