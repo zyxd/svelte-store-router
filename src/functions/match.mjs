@@ -1,5 +1,4 @@
 import { parse } from 'regexparam'
-import normalizePath from './normalizePath.mjs'
 
 function exec(path, { pattern, keys }) {
   let i = 0
@@ -13,17 +12,12 @@ function exec(path, { pattern, keys }) {
   return output
 }
 
-export default function({ path, base }, pattern = '*', loose = false) {
-  const result = parse(pattern, loose)
-
-  path = normalizePath(path)
-  base = normalizePath(base)
-
-  if (path.indexOf(base) === 0) {
-    path = normalizePath(path.slice(base.length))
-  } else {
+export default function({ path }, pattern = '*', loose = false) {
+  if (path === '') {
     return null
   }
+
+  const result = parse(pattern, loose)
 
   if (result.pattern.test(path)) {
     return exec(path, result)

@@ -66,6 +66,12 @@ export default function({
       fragment = hash
     } catch {}
 
+    if (path.indexOf(base) === 0) {
+      path = normalizePath(path.slice(base.length))
+    } else {
+      path = ''
+    }
+
     query = compose(
       when(always(queryParse), compose(
         when(always(queryTyped), map(stringToType)),
@@ -81,7 +87,6 @@ export default function({
     )(fragment)
 
     return {
-      base,
       path,
       query,
       fragment,
@@ -139,13 +144,12 @@ export default function({
       })
     }
   
-    subscribe($route => {
-      const isSamePath = $route.toString() === fromString(window.location.href).toString()
-      const isSameBase = new URL($route.path, window.location.origin).pathname.indexOf($route.base) === 0
+    subscribe(($route) => {
+      const isSamePath = $route.path === fromString(window.location.href).path
 
-      if (!isSamePath && isSameBase) {
+      if (!isSamePath) {
         delayed(delay, () => {
-          history.pushState({}, null, $route.toString())
+          history.pushState({}, null, `${$route.base}${$route}`)
         })
       }
     })

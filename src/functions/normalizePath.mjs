@@ -1,15 +1,11 @@
 export default function(path) {
-  if (path === '') {
-    return '/'
-  }
-
   path = path.toLowerCase()
+  path = path.replace(/\/+/g, '/')
+  path = path.replace(/\/$/, '')
 
   if (path.charAt(0) !== '/') {
     path = '/' + path
   }
 
   return path
-    .replace(/\/+/g, '/')
-    .replace(/\/$/, '')
 }
