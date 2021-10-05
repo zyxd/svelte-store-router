@@ -161,6 +161,6 @@ export default function({
     subscribe,
     set,
     update,
-    goto: route => set(fromString(`${base}${normalizePath(route)}`))
+    goto: route => set(fromString(normalizePath(`${base}${normalizePath(route)}`)))
   }
 }
