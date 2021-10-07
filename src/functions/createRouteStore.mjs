@@ -147,12 +147,14 @@ export default function({
     }
   
     subscribe(($route) => {
+      if (typeof $route === 'string') {
+        return set(fromString(normalizePath(`${base}${normalizePath($route)}`)))
+      }
+
       const isSamePath = $route.toString() === fromString(window.location.href).toString()
 
       if (!isSamePath) {
-        delayed(delay, () => {
-          history.pushState({}, null, normalizePath(`${base}${$route}`))
-        })
+        delayed(delay, () => history.pushState({}, null, normalizePath(`${base}${$route}`)))
       }
     })
   }
