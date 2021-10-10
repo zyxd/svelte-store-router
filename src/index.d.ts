@@ -17,6 +17,7 @@ interface RouteStoreOptions {
   sideEffect?: boolean,
   handleNavigation?: boolean | string,
   delay?: number,
+  autoClearParams?: boolean,
   queryParse?: boolean,
   queryTyped?: boolean,
   queryClean?: boolean,

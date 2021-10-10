@@ -1,4 +1,4 @@
-import { always, compose, join, map, when } from 'rambda'
+import { always, compose, equals, isEmpty, join, map, when } from 'rambda'
 import { parse } from 'regexparam'
 import { writable } from 'svelte/store'
 import stringToType from './stringToType.mjs'
@@ -21,6 +21,7 @@ export default function({
   sideEffect = true,
   handleNavigation = true,
   delay = 0,
+  autoClearParams = false,
   queryParse = true,
   queryTyped = true,
   queryClean = false,
@@ -151,9 +152,21 @@ export default function({
         return set(fromString(normalizePath(`${base}${normalizePath($route)}`)))
       }
 
-      const isSamePath = $route.toString() === fromString(window.location.href).toString()
+      const $route_сurrent = fromString(window.location.href)
+      const isSamePath = $route.path === $route_сurrent.path
+      const isSameQuery = equals($route.query, $route_сurrent.query)
+      const isSameFragment = equals($route.fragment, $route_сurrent.fragment)
+      const isSameRoute = $route.toString() === $route_сurrent.toString()
 
-      if (!isSamePath) {
+      if (autoClearParams && !isSamePath && !isEmpty($route.query) && isSameQuery) {
+        return set({ ...$route, query: {} })
+      }
+
+      if (autoClearParams && !isSamePath && !isEmpty($route.fragment) && isSameFragment) {
+        return set({ ...$route, fragment: {} })
+      }
+
+      if (!isSameRoute) {
         delayed(delay, () => history.pushState({}, null, normalizePath(`${base}${$route}`)))
       }
     })

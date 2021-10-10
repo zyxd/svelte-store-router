@@ -199,3 +199,6 @@ Controls side effect of route changing which push items to History. `true` by de
 
 #### handleNavigation [Boolean / String]
 Toggles a navigation handler that automatically intercepts `<a>` clicks, updating the route state without reloading the page. Adding a `rel="external"` attribute to a `<a>` will trigger a usual browser navigation when the link is clicked. In addition to boolean, can contain a string with CSS selectors (e.g. `".foo, #bar, form"`) for elements only within which `<a>` clicks should be handled. `true` by default.
+
+#### autoClearParams [Boolean]
+This option toggles automatically clear the `query` and `fragment` when the `path` is changed. Same as `$route = /123` instead of `$route.path = /123` (see above). `false` by default.
