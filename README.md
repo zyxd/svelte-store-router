@@ -194,6 +194,9 @@ Converts query and fragment string values to JavaScript types. `true` by default
 #### queryClean, fragmentClean [Boolean]
 Clean query and fragment from empty (`null` / `undefined` / `""`) values. Might be useful to avoid `/path?page=undefined&search=`. `false` by default.
 
+#### queryShortBoolean, fragmentShortBoolean [Boolean]
+Automatically shortens the parameter string for boolean values, e.g. `a=true&b=false&c=true` into `a&c`. So for parameters with `true` only the parameter name will be shown, and with `false` they will be hidden completely. `false` by default.
+
 #### sideEffect [Boolean]
 Controls side effect of route changing which push items to History. `true` by default in browser, always `false` on server side.
 

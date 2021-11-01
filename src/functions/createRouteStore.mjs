@@ -1,14 +1,12 @@
-import { always, compose, equals, isEmpty, join, map, when } from 'rambda'
+import { always, compose, concat, equals, isEmpty, join, map, not, when } from 'rambda'
 import { parse } from 'regexparam'
 import { writable } from 'svelte/store'
-import stringToType from './stringToType.mjs'
-import queryToObject from './queryToObject.mjs'
-import fragmentToObject from './fragmentToObject.mjs'
-import cleanObject from './cleanObject.mjs'
-import objectToQuery from './objectToQuery.mjs'
-import objectToFragment from './objectToFragment.mjs'
 import delayed from './delayed.mjs'
+import fragmentToObject from './fragmentToObject.mjs'
 import normalizePath from './normalizePath.mjs'
+import objectToParams from './objectToParams.mjs'
+import queryToObject from './queryToObject.mjs'
+import stringToType from './stringToType.mjs'
 
 const hasWindow = typeof window !== 'undefined'
 const hasHistory = typeof history !== 'undefined'
@@ -25,9 +23,11 @@ export default function({
   queryParse = true,
   queryTyped = true,
   queryClean = false,
+  queryShortBoolean = false,
   fragmentParse = true,
   fragmentTyped = true,
-  fragmentClean = false
+  fragmentClean = false,
+  fragmentShortBoolean = false
 } = {}) {
   function toString() {
     return decodeURIComponent(join('', [
@@ -35,25 +35,23 @@ export default function({
       when(
         always(queryParse),
         compose(
-          objectToQuery,
           when(
-            always(queryClean),
-            cleanObject
-          )
-        ),
-        this.query
-      ),
+            compose(not, isEmpty),
+            concat('?')
+          ),
+          objectToParams(queryClean, queryShortBoolean)
+        )
+      )(this.query),
       when(
         always(fragmentParse),
         compose(
-          objectToFragment,
           when(
-            always(fragmentClean),
-            cleanObject
-          )
-        ),
-        this.fragment
-      )
+            compose(not, isEmpty),
+            concat('#')
+          ),
+          objectToParams(fragmentClean, fragmentShortBoolean)
+        )
+      )(this.fragment)
     ]))
   }
 
