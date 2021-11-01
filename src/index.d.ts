@@ -21,9 +21,11 @@ interface RouteStoreOptions {
   queryParse?: boolean,
   queryTyped?: boolean,
   queryClean?: boolean,
+  queryShortBoolean?: boolean,
   fragmentParse?: boolean,
   fragmentTyped?: boolean,
-  fragmentClean?: boolean
+  fragmentClean?: boolean,
+  fragmentShortBoolean?: boolean
 }
 
 export function createRouteStore(options?: RouteStoreOptions): RouteStore<Route>
