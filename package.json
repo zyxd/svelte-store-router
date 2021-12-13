@@ -1,6 +1,6 @@
 {
   "name": "svelte-store-router",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "description": "Store-based router for Svelte",
   "main": "src/index.mjs",
   "module": "src/index.mjs",
